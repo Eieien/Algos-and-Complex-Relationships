@@ -155,27 +155,44 @@ void countingSort2(int arr[], int len){
 // Using linked list to represent buckets
 void bucketSort(int arr[], int len){
     
-    Dictionary D;
+    // Dictionary D;
 
-    initDict(D);
+    // initDict(D);
 
+    // for(int i = 0; i < len; i++){
+    //     insertSorted(D, arr[i]);       
+    // }
+
+    // int pos = 0;
+    // for(int i = 0; i < len; i++){
+    //     // fix deleteion of nodes here
+    //     for(Node curr = D[i]; curr != NULL; ){
+    //         Node temp = curr;
+    //         arr[pos] = curr->val;
+    //         pos++;
+    //         curr = curr->link;
+    //         free(temp);
+    //     }
+    // }
+    // initDict(D);
+    // displayDict(D);
+
+    int min = arr[0];
+    int max = arr[0];
+    // find the minimum and maximum
     for(int i = 0; i < len; i++){
-        insertSorted(D, arr[i]);       
-    }
+        if(min > arr[i]){
+            min = arr[i];
+        }
 
-    int pos = 0;
-    for(int i = 0; i < len; i++){
-        // fix deleteion of nodes here
-        for(Node curr = D[i]; curr != NULL; ){
-            Node temp = curr;
-            arr[pos] = curr->val;
-            pos++;
-            curr = curr->link;
-            free(temp);
+        if(max < arr[i]){
+            max = arr[i];
         }
     }
-    initDict(D);
-    displayDict(D);
+
+    
+
+
 }
 
 
