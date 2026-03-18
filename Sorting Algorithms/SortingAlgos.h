@@ -74,11 +74,7 @@ void insertionSort(int arr[], int len){
 
 }
 
-void mergeSort(int arr[], int len){
-    printf("MERGE SORT: \n");
-    
-    
-}
+
 //w3 schools version
 void countingSort1(int arr[], int len){
     
@@ -189,8 +185,6 @@ void bucketSort(int arr[], int len){
             max = arr[i];
         }
     }
-
-    
 
 
 }
