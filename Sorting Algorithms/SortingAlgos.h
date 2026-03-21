@@ -5,7 +5,8 @@
 #include<stdlib.h>
 #include<stdbool.h>
 #include<math.h>
-#include "Dicitionary.h"
+#include "DictionaryBucketSort.h"
+#include "ArrayBucketSort.h"
 
 void display(int arr[], int len){
 
@@ -197,31 +198,9 @@ void countingSort2(int arr[], int len){
     free(output);
 }
 
-// Using linked list to represent buckets
-void bucketSort(int arr[], int len){
-    
-    // Dictionary D;
-
-    // initDict(D);
-
-    // for(int i = 0; i < len; i++){
-    //     insertSorted(D, arr[i]);       
-    // }
-
-    // int pos = 0;
-    // for(int i = 0; i < len; i++){
-    //     // fix deleteion of nodes here
-    //     for(Node curr = D[i]; curr != NULL; ){
-    //         Node temp = curr;
-    //         arr[pos] = curr->val;
-    //         pos++;
-    //         curr = curr->link;
-    //         free(temp);
-    //     }
-    // }
-    // initDict(D);
-    // displayDict(D);
-
+void DictionaryBucketSort(int arr[], int len){
+    int amount = (int)sqrt(len);
+    LIST* buckets = createBuckets(amount);
     int min = arr[0];
     int max = arr[0];
     // find the minimum and maximum
@@ -234,8 +213,67 @@ void bucketSort(int arr[], int len){
             max = arr[i];
         }
     }
+    int range = getRange(min, max, amount);
+    printf("%d \n", range);
 
+    for(int i = 0; i < len; i++){
+        int key = hash(arr[i], min, range);
+        insertSorted(buckets, key, arr[i]);        
+    }
 
+    displayBuckets(buckets, amount);
+
+    int k = 0;
+    for(int i = 0; i < amount; i++){
+
+        for(Node* curr = &buckets[i]; *curr != NULL;){
+            arr[k] = (*curr)->val;
+            k++;
+            Node temp = *curr;
+            curr = &(*curr)->link;
+            free(temp);
+        }
+    }
+    freeBuckets(buckets);
+}
+
+void ArrayBucketSort(int arr[], int len){
+    int numBuckets = (int)sqrt(len);
+    
+    int min = arr[0], max = arr[0];
+
+    for(int i = 0; i < len; i++){
+        if(min > arr[i]){
+            min = arr[i];
+        }
+
+        if(max < arr[i]){
+            max = arr[i];
+        }
+    }
+    
+    int range = getRange(min, max, numBuckets);
+
+    int** buckets = createArrayBuckets(numBuckets, range);
+
+    for(int i = 0; i < len; i++){
+        int key = hash(arr[i], min, range);
+        insertIntoBucket(buckets, arr[i], key, range);        
+    }
+
+    sortBuckets(buckets, numBuckets, range);
+    displayArrayBuckets(buckets, numBuckets, range);
+
+    int i = 0;
+    for(int j = 0; j < numBuckets; j++){
+
+        for(int k = 0; k < range && buckets[j][k] < SENTINAL; k++){
+            arr[i] = buckets[j][k];
+            i++;
+        }
+    }
+    
+    freeArrayBuckets(buckets, numBuckets);
 }
 
 
