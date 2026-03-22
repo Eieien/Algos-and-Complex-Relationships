@@ -3,6 +3,8 @@
 #include "SortingAlgos.h"
 #include "MergeSort.h"
 #include "QuickSort.h"
+#include "RadixSort.h"
+#include "TournamentSort.h"
 
 int main(){
 
@@ -19,11 +21,13 @@ int main(){
     // selectionSort(arr, len);
     // countingSort2(arr, len);
     // DictionaryBucketSort(arr, len);
-    ArrayBucketSort(arr, len);
+    // ArrayBucketSort(arr, len);
     // GnomeSort(arr, len);
     // CombSort(arr, len);
     // MERGE_SORT(arr, 0, len - 1);
     // QuickSort(arr, 0, len -1);
+    // RadixSort(arr, len);
+    OfflineTournamentSort(arr, len);
     printf("Final: ");
     display(arr, len);
     

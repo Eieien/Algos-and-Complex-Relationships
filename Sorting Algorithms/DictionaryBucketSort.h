@@ -5,13 +5,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<math.h>
-
-typedef struct Node{
-
-    struct Node *link;
-    int val;
-
-}*LIST, *Node;
+#include "review/Dictionary.h"
 
 
 LIST* createBuckets(int amount);
