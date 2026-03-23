@@ -5,7 +5,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<math.h>
-#include "review/Dictionary.h"
+#include "Dictionary.h"
 
 
 LIST* createBuckets(int amount);

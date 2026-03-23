@@ -7,6 +7,14 @@
 
 #define SENTINAL 99999999
 
+typedef struct POT{
+
+    int value;
+    int index;
+
+}POT;
+
+
 void TournamentSort(int arr[], int len);
 
 void initTree(int tree[], int len){
@@ -82,6 +90,33 @@ void OfflineTournamentSort(int arr[], int len){
 
     displayTree(tree, treeSize);
 }
+
+void OnlineTournamentSort(int arr[], int len){
+    int treeSize = 7;
+    POT tree[treeSize];
+    
+    int offset = len - 1;
+    int lastInput = -1;
+    int result[len];
+    int dq[len];
+    int dqLast = -1;
+
+    for(int i = 0; i < treeSize; i++){
+        tree[i].value = SENTINAL;
+    }
+
+    for(int i = 0; i < 4; i++){
+        tree[offset + i].value= arr[i];
+        tree[offset + i].index = i;
+        printf("%d \n", tree[offset + i].value);
+    }
+    
+    for(int i = 0; i < treeSize; i++){
+        printf("%d ", tree[i].value);
+    }
+
+}
+
 
 
 
