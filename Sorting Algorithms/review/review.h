@@ -13,74 +13,6 @@ void display(int arr[], int len){
     }
 }
 
-void insertionSort(int arr[], int len){
-
-    for(int i = 1; i < len; i++){
-        int key = arr[i];
-        int j = i - 1;
-
-        while(j >= 0 && arr[j] > key){
-            arr[j + 1] = arr[j];
-            j--;
-        }
-
-        arr[j + 1] = key;
-    }
-
-}
-
-
-void SelectionSort(int arr[], int len){
-
-    for(int i = 0; i < len - 1; i++){
-
-        int min = i;
-        
-        for(int j = i + 1; j < len; j++){
-            if(arr[min] > arr[j]){
-                min = j;
-            }
-        }
-        if(arr[min] < arr[i]){
-            int temp = arr[i];
-            arr[i] = arr[min];
-            arr[min] = temp;
-        }
-    }
-
-}
-
-
-void GnomeSort(int arr[], int len){
-
-    int i = 1;
-    while(i < len){
-        if(arr[i] < arr[i - 1] && i > 0){
-            int temp = arr[i];
-            arr[i] = arr[i - 1];
-            arr[i - 1] = temp;
-            i--;
-        }else{
-            i++;
-        }
-    }
-}
-
-void BubbleSort(int arr[], int len){
-
-    for(int i = 0; i < len - 1; i++){
-
-        for(int j = i; j < len; j++){
-            if(arr[j] < arr[i]){
-                int temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp; 
-            }
-        }
-    }
-
-}
-
 
 
 int HoarePartitioning(int arr[], int l, int r){
@@ -111,40 +43,6 @@ int HoarePartitioning(int arr[], int l, int r){
 
 }
 
-int LomutoPartitioning(int arr[], int l, int r){
-
-    int j = l;
-    int i = l -1;
-    int pivot = r;
-    
-    while(j < pivot){
-        if(arr[j] <= arr[pivot]){
-            i++;
-            int temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-        }
-        j++;
-    }
-
-    int temp = arr[i + 1];
-    arr[i + 1] = arr[pivot];
-    arr[pivot] = temp;
-
-    return i + 1;
-
-}
-
-void QuickSort(int arr[], int l, int r){
-
-    if(l < r){
-
-        int p = HoarePartitioning(arr, l, r);
-        QuickSort(arr, l, p);
-
-        QuickSort(arr, p + 1, r);
-    }
-}
 
 
 #endif

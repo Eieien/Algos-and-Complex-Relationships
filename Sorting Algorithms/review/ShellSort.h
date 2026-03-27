@@ -13,21 +13,21 @@ void ShellSort(int arr[], int len){
 
         for(int i = gap; i < len; i++){
 
-            int key = arr[i];
             int j = i;
-            
+            int key = arr[i];
+
             while(j >= gap && arr[j - gap] > key){
                 arr[j] = arr[j - gap];
                 j -= gap;
             }
 
             arr[j] = key;
+
         }
 
+
         gap /= 2;
-
     }
-
 }
 
 

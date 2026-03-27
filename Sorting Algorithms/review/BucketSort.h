@@ -71,7 +71,7 @@ void insertItem(int* bucket, int len, int val){
 }
 
 void BucketSort(int arr[], int len){
-    int numBuckets = sqrt(len);
+    int numBuckets = len;
     int** buckets = createBuckets(numBuckets, len);
 
     int min = arr[0], max = arr[0];

@@ -4,15 +4,23 @@
 #include<stdlib.h>
 #include<stdbool.h>
 #include<math.h>
+#include<limits.h>
 
 #define SENTINAL 999
 
+void displayStrand(int strand[], int strandSize){
+    
+    for(int i = 0; i < strandSize; i++){
+        printf("%d ", strand[i]);
+    }
+    printf("\n");
+}
+
 void mergeStrand(int strand[], int strandSize, int result[], int resultSize){
-    printf("MERGING\n");
 
     int output[strandSize + resultSize];
     
-    int i =0 , j = 0, k = 0;
+    int i = 0, j = 0, k = 0;
 
     while(i < strandSize && j < resultSize){
         if(strand[i] < result[j]){
@@ -33,41 +41,38 @@ void mergeStrand(int strand[], int strandSize, int result[], int resultSize){
     for(int i = 0; i < k; i++){
         result[i] = output[i];
     }
-    printf("MERGED\n");
-
-
+    
 }
 
-void StrandSort(int arr[], int len){
 
+
+void StrandSort(int arr[], int len){
+    int strand[len];
+    int strandSize = 0;
+    int remaining = len;
     int result[len];
     int resultSize = 0;
-    int next = -1;
-    int n = len;
-    
-    while(n > 0){
-        int strand[len];
-        int strandSize = 0;
-        int val = -1;
 
+    while(remaining > 0){
+
+        int min = INT_MIN;
+        strandSize = 0;
         for(int i = 0; i < len; i++){
-
-            if(arr[i] != SENTINAL && arr[i] >= val){
+            // instead of shifting the elements, replace them with sentinel value to mark it as placed in the strand
+            if(arr[i] != INT_MAX && arr[i] > min){
                 strand[strandSize++] = arr[i];
-                val = arr[i];
-                arr[i] = SENTINAL;
-                n--;
+                min = strand[strandSize - 1];
+                arr[i] = INT_MAX;
+                remaining--;
             }
-        }
 
+        }
         mergeStrand(strand, strandSize, result, resultSize);
         resultSize += strandSize;
     }
-
     for(int i = 0; i < len; i++){
         arr[i] = result[i];
     }
-
 
 }
 
